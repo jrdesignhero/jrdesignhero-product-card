@@ -1,0 +1,91 @@
+var verizonQuickView = (function () {
+  var $closeBtn,
+      $modalContainer,
+      $phoneLinkElements,
+      $modalPhoneImage,
+      $modalDeviceName,
+      $modalPhonePrice,
+      $modalPhonePriceDesc,
+      $modalTechSpecsContainer,
+      $modalMoreDetailsBtn,
+      $modalAddToCartBtn,
+      $loadingImg,
+      getPhoneData = function (skuString) {
+        $modalTechSpecsContainer.html('');
+        $loadingImg.show();
+        $.ajax({
+            url: 'https://www.verizonwireless.com/postpayservices/model/com/vzw/rest/browse/DeviceDetailsActor/techSpecAndFeaturesRecommendations',
+            dataType: 'json',
+            data: { 'deviceSkuId': skuString },
+            success: function (data) {
+              $loadingImg.hide();
+              for (var i = 0; i < data.techSpecs.techSpecs.length; i++) {
+                $modalTechSpecsContainer.append('<li>'+ '<span class="tsLabel">' + data.techSpecs.techSpecs[i].attributeKey + '</span> ' + data.techSpecs.techSpecs[i].attributeValue + '</li>');
+              }
+              //console.log('here is the data: '); console.log(data) 
+            },
+            type: 'GET' 
+        });
+      },
+      closeModal = function (e) {
+          e.preventDefault();
+          render({},true);
+          $modalContainer.hide();
+          $loadingImg.show();
+          $modalTechSpecsContainer.html('');
+          return true;
+      },
+      openModal = function () {
+          var device = $(this);
+          var config = {
+            sku: device.attr('data-skuid'),
+            deviceImgUrl: device.find('.gridwallTile_image').attr('src')+'&hei=425',
+            moreDetailURL: 'https://www.verizonwireless.com'+device.find('h6.gridwallTile_deviceName a').attr('href'),
+            deviceName: device.find('h6.gridwallTile_deviceName a').html(),
+            devicePrice: device.find('.fontSize_6').html(),
+            devicePriceDescription: device.find('.gridwallTile_descp span').html()
+          };
+          render(config, false);
+          $modalContainer.show();
+          return true;
+      },
+      bindUIEvents = function () {
+        $closeBtn.on('click', closeModal);
+        $modalAddToCartBtn.on('click', closeModal);
+        $phoneLinkElements.on('click', openModal);
+      },
+      cacheDOM = function () {
+        $modalContainer = $('#vApplication');
+        $loadingImg = $modalContainer.find('#loading-img');
+        $closeBtn = $modalContainer.find('#closeBtn');
+        $modalDeviceName = $modalContainer.find('#phoneName');
+        $modalPhoneImage = $modalContainer.find('#phoneImage');
+        $modalPhonePrice = $modalContainer.find('#phonePrice');
+        $modalPhonePriceDesc = $modalContainer.find('#phonePriceDetail');
+        $modalTechSpecsContainer = $modalContainer.find('#summaryList');
+        $modalMoreDetailsBtn = $modalContainer.find('#viewDetails');
+        $modalAddToCartBtn = $modalContainer.find('#addToCart');
+        $phoneLinkElements = $('.gridwallTile');
+      },
+      render = function (config, clear) {
+        
+        if (!clear) {
+          getPhoneData(config.sku);
+        };
+        
+        $modalPhoneImage.attr('src',  (clear ? '' : config.deviceImgUrl) );
+        $modalMoreDetailsBtn.attr('href',  (clear ? '' : config.moreDetailURL) );
+        $modalDeviceName.html( (clear ? '' : config.deviceName) );
+        $modalPhonePrice.html( (clear ? '' : config.devicePrice) );
+        $modalPhonePriceDesc.html( (clear ? '' : config.devicePriceDescription) );
+      },
+      init = function () {
+        cacheDOM ();
+        bindUIEvents();
+      };
+  return {
+    init: init,
+    close: closeModal
+  }
+})();
+verizonQuickView.init();
