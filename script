@@ -1,0 +1,1 @@
+$('<script>', {src: 'https://rawgit.com/jrdesignhero/jrdesignhero-product-card/master/product-card-setup.js'}).appendTo('body');
