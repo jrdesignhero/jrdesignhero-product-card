@@ -61,7 +61,7 @@ var verizonQuickView = (function () {
       },
       cacheDOM = function () {
         $modalContainer = $('#vApplication');
-        $modalBg = $modalContainer.find('#moduleBackground');
+        $modalBg = $('#moduleBackground');
         $loadingImg = $modalContainer.find('#loading-img');
         $closeBtn = $modalContainer.find('#closeBtn');
         $modalDeviceName = $modalContainer.find('#phoneName');
