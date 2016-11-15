@@ -1,6 +1,7 @@
 var verizonQuickView = (function () {
   var $closeBtn,
       $modalContainer,
+      $modalBg,
       $phoneLinkElements,
       $modalPhoneImage,
       $modalDeviceName,
@@ -19,7 +20,7 @@ var verizonQuickView = (function () {
             data: { 'deviceSkuId': skuString },
             success: function (data) {
               $loadingImg.hide();
-              for (var i = 0; i < data.techSpecs.techSpecs.length; i++) {
+              for (var i = 0; i < 10 /*remove to get all datasets    data.techSpecs.techSpecs.length*/; i++) {
                 $modalTechSpecsContainer.append('<li>'+ '<span class="tsLabel">' + data.techSpecs.techSpecs[i].attributeKey + '</span> ' + data.techSpecs.techSpecs[i].attributeValue + '</li>');
               }
               //console.log('here is the data: '); console.log(data) 
@@ -29,6 +30,7 @@ var verizonQuickView = (function () {
       },
       closeModal = function (e) {
           e.preventDefault();
+          $modalBg.hide();
           render({},true);
           $modalContainer.hide();
           $loadingImg.show();
@@ -45,17 +47,21 @@ var verizonQuickView = (function () {
             devicePrice: device.find('.fontSize_6').html(),
             devicePriceDescription: device.find('.gridwallTile_descp span').html()
           };
+          $modalBg.show();
           render(config, false);
           $modalContainer.show();
           return true;
       },
       bindUIEvents = function () {
         $closeBtn.on('click', closeModal);
+        $modalBg.on('click', closeModal);
         $modalAddToCartBtn.on('click', closeModal);
         $phoneLinkElements.on('click', openModal);
+
       },
       cacheDOM = function () {
         $modalContainer = $('#vApplication');
+        $modalBg = $modalContainer.find('#moduleBackground');
         $loadingImg = $modalContainer.find('#loading-img');
         $closeBtn = $modalContainer.find('#closeBtn');
         $modalDeviceName = $modalContainer.find('#phoneName');
