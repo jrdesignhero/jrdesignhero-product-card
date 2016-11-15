@@ -15,6 +15,7 @@
   overflow: hidden;
   font-family: 'Open Sans', sans-serif;
   display: none;
+  z-index: 1001;
 }
 #phoneName, #summaryTitle, #phonePrice {
   font-family: 'Source Sans Pro', sans-serif;
