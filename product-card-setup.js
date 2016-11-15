@@ -24,7 +24,8 @@ var PageSetup = {
   },
   bindUIActions: function () {
     //remove click eventlistener from phones
-    $('.gridwallTile_wrapper').off();
+    $('.gridwallTile_wrapper').off(true);
+    $('.gridwallTile_deviceName a').on('click', function (e) { e.preventDefault() });
   },
   render: function () {
     PageSetup.loadStyleSheets();

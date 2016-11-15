@@ -117,12 +117,16 @@ ul#summaryList {
 }
 #addToCart:hover {
   background: #ae0000;
+  color: #fff;
+  text-decoration: none;
 }
 #viewDetails {
   background: #4b4b4b;
 }
 #viewDetails:hover {
   background: #636363;
+  color: #fff;
+  text-decoration: none;
 }
 #closeBtn {
   font-size: 30px;
