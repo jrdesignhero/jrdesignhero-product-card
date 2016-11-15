@@ -20,7 +20,7 @@ var verizonQuickView = (function () {
             data: { 'deviceSkuId': skuString },
             success: function (data) {
               $loadingImg.hide();
-              for (var i = 0; i < 10 /*remove to get all datasets    data.techSpecs.techSpecs.length*/; i++) {
+              for (var i = 0; i < 9 /*remove to get all datasets    data.techSpecs.techSpecs.length*/; i++) {
                 $modalTechSpecsContainer.append('<li>'+ '<span class="tsLabel">' + data.techSpecs.techSpecs[i].attributeKey + '</span> ' + data.techSpecs.techSpecs[i].attributeValue + '</li>');
               }
               //console.log('here is the data: '); console.log(data) 
