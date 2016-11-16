@@ -20,15 +20,10 @@ var verizonQuickView = (function () {
             data: { 'deviceSkuId': skuString },
             success: function (data) {
               $loadingImg.hide();
-              var i =0; var j = 0;
-              while (j <= 6 /*remove to get all datasets    data.techSpecs.techSpecs.length*/) {
-                if (data.techSpecs.techSpecs[i].attributeKey === 'LTE Advanced ' || data.techSpecs.techSpecs[i].attributeKey === 'Width' || data.techSpecs.techSpecs[i].attributeKey === 'Height') {
-                  i++;
-                  continue;
+              for (var i = 0; i < data.techSpecs.techSpecs.length; i++) {
+                if (data.techSpecs.techSpecs[i].attributeKey === 'Standby Time - Up to:' || data.techSpecs.techSpecs[i].attributeKey === 'Usage Time - Up to:' || data.techSpecs.techSpecs[i].attributeKey === 'Camera' || data.techSpecs.techSpecs[i].attributeKey === 'Weight' || data.techSpecs.techSpecs[i].attributeKey === 'Screen'|| data.techSpecs.techSpecs[i].attributeKey === 'Operating System' || data.techSpecs.techSpecs[i].attributeKey === 'Storage') {
+                  $modalTechSpecsContainer.append('<li>'+ '<span class="tsLabel">' + data.techSpecs.techSpecs[i].attributeKey + '</span> ' + data.techSpecs.techSpecs[i].attributeValue + '</li>');
                 }
-                $modalTechSpecsContainer.append('<li>'+ '<span class="tsLabel"><strong>' + data.techSpecs.techSpecs[i].attributeKey + '</strong></span> ' + data.techSpecs.techSpecs[i].attributeValue + '</li>');      
-                i++;
-                j++;
               }
             },
             type: 'GET' 
