@@ -20,10 +20,14 @@ var verizonQuickView = (function () {
             data: { 'deviceSkuId': skuString },
             success: function (data) {
               $loadingImg.hide();
-              for (var i = 0; i < 9 /*remove to get all datasets    data.techSpecs.techSpecs.length*/; i++) {
-                $modalTechSpecsContainer.append('<li>'+ '<span class="tsLabel">' + data.techSpecs.techSpecs[i].attributeKey + '</span> ' + data.techSpecs.techSpecs[i].attributeValue + '</li>');
+              var i = 0;
+              while (i <= 6 /*remove to get all datasets    data.techSpecs.techSpecs.length*/) {
+                if (data.techSpecs.techSpecs[i].attributeKey === 'LTE Advanced ' || data.techSpecs.techSpecs[i].attributeKey === 'Width' || data.techSpecs.techSpecs[i].attributeKey === 'Height') {
+                  continue;
+                }
+                $modalTechSpecsContainer.append('<li>'+ '<span class="tsLabel"><strong>' + data.techSpecs.techSpecs[i].attributeKey + '</strong></span> ' + data.techSpecs.techSpecs[i].attributeValue + '</li>');      
+                i++;
               }
-              //console.log('here is the data: '); console.log(data) 
             },
             type: 'GET' 
         });
