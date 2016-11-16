@@ -84,12 +84,12 @@ span.tsLabel {
 }
 ul#summaryList {
     list-style: square;
-    margin: 20px 0px 20px 20px;
+    margin: 15px 0px 15px 20px;
     padding: 0px;
 }
 #summaryList li {
     font-size: 14px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     line-height: 22px;
     list-style: square;
 }
@@ -109,7 +109,7 @@ ul#summaryList {
   text-decoration: none;
   border-radius: 3px;
   -moz-border-radius: 3px;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 #addToCart {
   background: #cd040b;
