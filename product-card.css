@@ -94,7 +94,7 @@ ul#summaryList {
     list-style: square;
 }
 #phonePriceDetail {
-  font-size: 12px;
+  font-size: 10px;
   color: #777777;
   margin-top: 5px;
   margin-bottom: 20px;;
@@ -157,4 +157,7 @@ img#loading-img {
     z-index: 1000;
     opacity: 0.8;
     filter: alpha(opacity=80);
+}
+span.fontSize_2, h3#phonePrice br {
+    display: none;
 }
