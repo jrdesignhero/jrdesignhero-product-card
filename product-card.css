@@ -21,11 +21,11 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 #phonePrice {
-  font-size: 36px;
-  font-weight: bold;
-  margin: 30px 0px 0px 0px;
-  line-height: 36px;
-  color: #cd040b;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 30px 0px 0px 0px;
+    line-height: 28px;
+    color: #cd040b;
 }
 #phoneName {
   font-size: 32px;
@@ -88,9 +88,9 @@ ul#summaryList {
     padding: 0px;
 }
 #summaryList li {
-    font-size: 14px;
-    margin-bottom: 6px;
-    line-height: 22px;
+    font-size: 13px;
+    margin-bottom: 5px;
+    line-height: 20px;
     list-style: square;
 }
 #phonePriceDetail {
