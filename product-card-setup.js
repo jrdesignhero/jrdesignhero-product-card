@@ -40,5 +40,3 @@ var PageSetup = {
 //Let's get this party Started!
 //initalize PageSetup
 PageSetup.init();
-//initalize verizonQuickView
-verizonQuickView.init();
