@@ -36,4 +36,9 @@ var PageSetup = {
     this.render();
   }
 };
+
+//Let's get this party Started!
+//initalize PageSetup
 PageSetup.init();
+//initalize verizonQuickView
+verizonQuickView.init();
