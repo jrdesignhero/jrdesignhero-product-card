@@ -85,5 +85,3 @@ var verizonQuickView = (function () {
     init: init
   }
 })();
-//Let's get this party Started!
-verizonQuickView.init();
