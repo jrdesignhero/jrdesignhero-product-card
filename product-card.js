@@ -1,17 +1,9 @@
 var verizonQuickView = (function () {
-  var $closeBtn,
-      $modalContainer,
-      $modalBg,
-      $phoneLinkElements,
-      $modalPhoneImage,
-      $modalDeviceName,
-      $modalPhonePrice,
-      $modalPhonePriceDesc,
-      $modalTechSpecsContainer,
-      $modalMoreDetailsBtn,
-      $modalAddToCartBtn,
-      $loadingImg,
-      getPhoneData = function (skuString) {
+  //private variables
+  var $closeBtn,$modalContainer,$modalBg,$phoneLinkElements,$modalPhoneImage,$modalDeviceName,$modalPhonePrice,$modalPhonePriceDesc,$modalTechSpecsContainer,$modalMoreDetailsBtn,
+      $modalAddToCartBtn,$loadingImg;
+  //private functions
+  var getPhoneData = function (skuString) {
         $modalTechSpecsContainer.html('');
         $loadingImg.show();
         $.ajax({
@@ -75,11 +67,9 @@ var verizonQuickView = (function () {
         $phoneLinkElements = $('.gridwallTile');
       },
       render = function (config, clear) {
-        
         if (!clear) {
           getPhoneData(config.sku);
         };
-        
         $modalPhoneImage.attr('src',  (clear ? '' : config.deviceImgUrl) );
         $modalMoreDetailsBtn.attr('href',  (clear ? '' : config.moreDetailURL) );
         $modalDeviceName.html( (clear ? '' : config.deviceName) );
@@ -90,9 +80,10 @@ var verizonQuickView = (function () {
         cacheDOM ();
         bindUIEvents();
       };
+  //VerizonQuickView API
   return {
-    init: init,
-    close: closeModal
+    init: init
   }
 })();
+//Let's get this party Started!
 verizonQuickView.init();
